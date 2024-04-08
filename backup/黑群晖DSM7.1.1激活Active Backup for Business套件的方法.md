@@ -9,10 +9,10 @@ DSM 7.2（64551）经验证依然有效，如第二步激活失败，请1.多试
 > https://**你的群晖内网IP**:5001/webapi/auth.cgi?api=SYNO.API.Auth&version=3&method=login&account=**admin**&passwd=**admin的密码**&format=cookie
 
 
->http://192.168.1.104:5000/webapi/auth.cgi?api=SYNO.API.Auth&version=3&method=login&account=admin&passwd=ssSS2326250&format=cookie
+>http://192.168.1.104:5000/webapi/auth.cgi?api=SYNO.API.Auth&version=3&method=login&account=admin&passwd=admin的密码&format=cookie
 
 
->http://192.168.1.100:5000/webapi/auth.cgi?api=SYNO.API.Auth&method=Login&version=1&account=admin&passwd=s2326250&format=cookie
+>http://192.168.1.100:5000/webapi/auth.cgi?api=SYNO.API.Auth&method=Login&version=1&account=admin&passwd=admin的密码&format=cookie
 
 如果did和sid显示一串字符，success为true则开启成功
 
@@ -20,9 +20,9 @@ DSM 7.2（64551）经验证依然有效，如第二步激活失败，请1.多试
 
 > https://**你的群晖内网IP**:5001/webapi/auth.cgi?api=SYNO.ActiveBackup.Activation&method=set&version=1&activated=true&serial_number=**黑群晖序列号**
 
->http://192.168.1.104:5000/webapi/auth.cgi?api=SYNO.ActiveBackup.Activation&method=set&version=1&activated=true&serial_number=2022LYC000000
+>http://192.168.1.104:5000/webapi/auth.cgi?api=SYNO.ActiveBackup.Activation&method=set&version=1&activated=true&serial_number=**黑群晖序列号**
 
->http://192.168.1.100:5000/webapi/entry.cgi?api=SYNO.ActiveBackup.Activation&method=set&version=1&activated=true&serial_number=1750PDN196400
+>http://192.168.1.100:5000/webapi/entry.cgi?api=SYNO.ActiveBackup.Activation&method=set&version=1&activated=true&serial_number=**黑群晖序列号**
 
 activated和success返回true则开启成功
 
