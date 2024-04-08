@@ -20,7 +20,7 @@ service docker start        #启动docker
 emqx ctl admins username password
 ``` bash
 emqx ctl admins
-emqx ctl admins passwd  admin s2326250
+emqx ctl admins passwd  admin password
 ```
 
 ###  qinglong
@@ -44,7 +44,7 @@ docker run -dit \
 ``` docker
 ql repo [https://github.com/customsshen/ql.git](https://github.com/customsshen/ql.git) "main"
 
-customsshen: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
+customsshen:ghp_b8Q8mTsNZSaiJeu2R5oT1LphzkKb1z06J!!!
 ```
 
 ### portainer

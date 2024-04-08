@@ -80,7 +80,7 @@ service docker start        <span class="pl-c"><span class="pl-c">#</span>启动
 The <code class="notranslate">admins</code> command can be used to create/update/delete administrative users<br>
 emqx ctl admins username password</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">emqx ctl admins
-emqx ctl admins passwd  admin s2326250</pre></div>
+emqx ctl admins passwd  admin password</pre></div>
 <h3>qinglong</h3>
 <div class="highlight highlight-source-shell"><pre class="notranslate">docker run -dit \
   -v <span class="pl-smi">$PWD</span>/ql:/ql/data \
@@ -98,7 +98,7 @@ emqx ctl admins passwd  admin s2326250</pre></div>
 <h4>公网IP变化推送</h4>
 <pre lang="docker" class="notranslate"><code class="notranslate">ql repo [https://github.com/customsshen/ql.git](https://github.com/customsshen/ql.git) "main"
 
-customsshen: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
+customsshen:ghp_b8Q8mTsNZSaiJeu2R5oT1LphzkKb1z06J!!!
 </code></pre>
 <h3>portainer</h3>
 <pre lang="docker" class="notranslate"><code class="notranslate">docker run -d --restart=always --name="portainer" -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock 6053537/portainer-ce

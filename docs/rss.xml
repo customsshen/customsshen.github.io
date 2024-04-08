@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:18:05 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>我的esxi 拓扑图</title><link>https://customsshen.github.io/post/wo-de-esxi%20-tuo-pu-tu.html</link><description># alpine &#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:20:07 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>我的esxi 拓扑图</title><link>https://customsshen.github.io/post/wo-de-esxi%20-tuo-pu-tu.html</link><description># alpine &#13;
 修改网关指向旁路由IP&#13;
 ```bash&#13;
 vim /etc/network/interface&#13;
@@ -21,7 +21,7 @@ service docker start        #启动docker&#13;
 emqx ctl admins username password&#13;
 ``` bash&#13;
 emqx ctl admins&#13;
-emqx ctl admins passwd  admin s2326250&#13;
+emqx ctl admins passwd  admin password&#13;
 ```&#13;
 &#13;
 ###  qinglong&#13;
@@ -45,7 +45,7 @@ docker run -dit \&#13;
 ``` docker&#13;
 ql repo [https://github.com/customsshen/ql.git](https://github.com/customsshen/ql.git) "main"&#13;
 &#13;
-customsshen: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&#13;
+customsshen:ghp_b8Q8mTsNZSaiJeu2R5oT1LphzkKb1z06J!!!&#13;
 ```&#13;
 &#13;
 ### portainer&#13;
