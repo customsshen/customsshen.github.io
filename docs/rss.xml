@@ -1,13 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>积雪之峰</title><link>https://customsshen.github.io</link><description>好记性不如BLOG</description><copyright>积雪之峰</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 03:58:45 +0000</lastBuildDate><managingEditor>积雪之峰</managingEditor><ttl>60</ttl><webMaster>积雪之峰</webMaster><item><title>Linux中用脚本添加crontab定时任务</title><link>https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</link><description>通常&#13;
-我们常用的添加crontab定时任务方式是，手动执行命令：&#13;
-``` linux&#13;
-crontab -e&#13;
-```&#13;
-然后将任务脚本手动添加到文件中&#13;
-&#13;
-实际&#13;
-实际中我们常常想在执行程序启动脚本时，自动添加crontab定时任务，例如通过crontab任务周期性删除程序产生的日志等等，我们可以使用如下脚本，通过脚本自动添加我们的crontab定时任务。</description><guid isPermaLink="true">https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</guid><pubDate>Mon, 08 Apr 2024 03:22:52 +0000</pubDate></item><item><title>打造docker最小的python容器</title><link>https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</link><description># 打造docker最小的python容器&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>积雪之峰</title><link>https://customsshen.github.io</link><description>好记性不如BLOG</description><copyright>积雪之峰</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 04:11:30 +0000</lastBuildDate><managingEditor>积雪之峰</managingEditor><ttl>60</ttl><webMaster>积雪之峰</webMaster><item><title>打造docker最小的python容器</title><link>https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</link><description># 打造docker最小的python容器&#13;
 1. 如何打造最小 Python Docker 容器 https://b23.tv/BV1w54y1n72A&#13;
 2. 現在已經是容器 (container) 的時代，團隊之間合作肯定要打包統一的 Docker Image 來解決環境不一致的問題，但是容器的大小決定了部署微服務的時間，本篇來介紹如何打造最小的 Python 容器。</description><guid isPermaLink="true">https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</guid><pubDate>Mon, 08 Apr 2024 03:01:03 +0000</pubDate></item><item><title>docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量</title><link>https://customsshen.github.io/post/docker%20run%20-e%20-shi-yong-huan-jing-bian-liang-chuan-zhi-%EF%BC%88-zi-fu-%E3%80%81-shu-zi-%E3%80%81json%EF%BC%89-bing-yong-%20python%20-jie-xi-_-mu-yao-da-xiong-di-de-bo-ke-%20-%20CSDN%20-bo-ke-_docker%20run%20-shi-yong-huan-jing-bian-liang.html</link><description># 第一步，代码编写&#13;
 &#13;
@@ -613,4 +605,12 @@ Default Gateway：192.168.100.1（后面要安装的 openwrt 的地址，openwrt
 优点：不需要增加硬件和修改任何配置文件，配置起来很易用  &#13;
 缺点：如果需要对硬盘调整，需要重新映射；群晖无法获取到 SMART 信息&#13;
 &#13;
-1. 通过命令`ls -l /dev/disks`查看当前挂载的所有磁盘信息。</description><guid isPermaLink="true">https://customsshen.github.io/post/%5BVMware%5DESXI%20-xia-ying-pan-de-liang-zhong-zhi-tong-fang-shi.html</guid><pubDate>Mon, 08 Apr 2024 02:10:09 +0000</pubDate></item></channel></rss>
+1. 通过命令`ls -l /dev/disks`查看当前挂载的所有磁盘信息。</description><guid isPermaLink="true">https://customsshen.github.io/post/%5BVMware%5DESXI%20-xia-ying-pan-de-liang-zhong-zhi-tong-fang-shi.html</guid><pubDate>Mon, 08 Apr 2024 02:10:09 +0000</pubDate></item><item><title>Linux中用脚本添加crontab定时任务</title><link>https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</link><description>通常&#13;
+我们常用的添加crontab定时任务方式是，手动执行命令：&#13;
+``` linux&#13;
+crontab -e&#13;
+```&#13;
+然后将任务脚本手动添加到文件中&#13;
+&#13;
+实际&#13;
+实际中我们常常想在执行程序启动脚本时，自动添加crontab定时任务，例如通过crontab任务周期性删除程序产生的日志等等，我们可以使用如下脚本，通过脚本自动添加我们的crontab定时任务。</description><guid isPermaLink="true">https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</guid><pubDate>Wed, 29 Mar 2017 05:20:00 +0000</pubDate></item></channel></rss>

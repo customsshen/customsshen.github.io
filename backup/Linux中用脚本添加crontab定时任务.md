@@ -41,6 +41,4 @@ exit 0
 
 
 
-<!-- ##{"timestamp":1490764800}## -->
-<!-- ##{"style":"<style>#postBody{font-size:20px}</style>"}## -->
-<!-- ##{"script":"<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>"}## -->
+<!-- ##{"script":"<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>","style":"<style>#postBody{font-size:20px}</style>","timestamp":1490764800}## -->
