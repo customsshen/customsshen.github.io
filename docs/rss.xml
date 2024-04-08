@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 03:01:27 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>打造docker最小的python容器</title><link>https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</link><description># 打造docker最小的python容器&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 03:23:25 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Linux中用脚本添加crontab定时任务</title><link>https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</link><description>通常&#13;
+我们常用的添加crontab定时任务方式是，手动执行命令：&#13;
+``` linux&#13;
+crontab -e&#13;
+```&#13;
+然后将任务脚本手动添加到文件中&#13;
+&#13;
+实际&#13;
+实际中我们常常想在执行程序启动脚本时，自动添加crontab定时任务，例如通过crontab任务周期性删除程序产生的日志等等，我们可以使用如下脚本，通过脚本自动添加我们的crontab定时任务。</description><guid isPermaLink="true">https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html</guid><pubDate>Mon, 08 Apr 2024 03:22:52 +0000</pubDate></item><item><title>打造docker最小的python容器</title><link>https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</link><description># 打造docker最小的python容器&#13;
 1. 如何打造最小 Python Docker 容器 https://b23.tv/BV1w54y1n72A&#13;
 2. 現在已經是容器 (container) 的時代，團隊之間合作肯定要打包統一的 Docker Image 來解決環境不一致的問題，但是容器的大小決定了部署微服務的時間，本篇來介紹如何打造最小的 Python 容器。</description><guid isPermaLink="true">https://customsshen.github.io/post/da-zao-docker-zui-xiao-de-python-rong-qi.html</guid><pubDate>Mon, 08 Apr 2024 03:01:03 +0000</pubDate></item><item><title>修改DockerFile_毕竟尹稳健的博客 - CSDN 博客</title><link>https://customsshen.github.io/post/xiu-gai-DockerFile_-bi-jing-yin-wen-jian-de-bo-ke-%20-%20CSDN%20-bo-ke.html</link><description>## DockerFile&#13;
 &#13;
