@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:24:16 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Linux 配置 SSH 服务实现远程远程访问_使用 ssh 远程控制 linux_liguangxian2018 的博客 - CSDN 博客</title><link>https://customsshen.github.io/post/Linux%20-pei-zhi-%20SSH%20-fu-wu-shi-xian-yuan-cheng-yuan-cheng-fang-wen-_-shi-yong-%20ssh%20-yuan-cheng-kong-zhi-%20linux_liguangxian2018%20-de-bo-ke-%20-%20CSDN%20-bo-ke.html</link><description>1. 查询是否安装 SSH.&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:24:44 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>vmware 官网无法注册 Zip or postal code 报错 - 下一朵云</title><link>https://customsshen.github.io/post/vmware%20-guan-wang-wu-fa-zhu-ce-%20Zip%20or%20postal%20code%20-bao-cuo-%20-%20-xia-yi-duo-yun.html</link><description>![](https://cos.orcy.net.cn/20221111165756.png)&#13;
+&#13;
+**一、问题描述**&#13;
+&#13;
+vmware 官网无法注册 Zip or postal code 报错 `Invalid Address Line,city,zip/postal code,country/territory combination` ，如下图 1&#13;
+&#13;
+![](https://cos.orcy.net.cn/20221111165204.png)&#13;
+&#13;
+图 1 Zip or postal code 报错&#13;
+&#13;
+**二、解决办法**&#13;
+&#13;
+不要切换中文语言，使用英语。</description><guid isPermaLink="true">https://customsshen.github.io/post/vmware%20-guan-wang-wu-fa-zhu-ce-%20Zip%20or%20postal%20code%20-bao-cuo-%20-%20-xia-yi-duo-yun.html</guid><pubDate>Mon, 08 Apr 2024 02:24:18 +0000</pubDate></item><item><title>Linux 配置 SSH 服务实现远程远程访问_使用 ssh 远程控制 linux_liguangxian2018 的博客 - CSDN 博客</title><link>https://customsshen.github.io/post/Linux%20-pei-zhi-%20SSH%20-fu-wu-shi-xian-yuan-cheng-yuan-cheng-fang-wen-_-shi-yong-%20ssh%20-yuan-cheng-kong-zhi-%20linux_liguangxian2018%20-de-bo-ke-%20-%20CSDN%20-bo-ke.html</link><description>1. 查询是否安装 SSH.&#13;
 &#13;
 ```&#13;
 rpm -pa |grep ssh&#13;
