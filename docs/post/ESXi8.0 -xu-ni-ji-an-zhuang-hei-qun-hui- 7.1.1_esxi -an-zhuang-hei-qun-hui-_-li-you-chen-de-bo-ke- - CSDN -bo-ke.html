@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="ESXi8.0 虚拟机安装黑群晖 7.1.1_esxi 安装黑群晖_李佑辰的博客 - CSDN 博客">
+<title>ESXi8.0 虚拟机安装黑群晖 7.1.1_esxi 安装黑群晖_李佑辰的博客 - CSDN 博客</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ESXi8.0 虚拟机安装黑群晖 7.1.1_esxi 安装黑群晖_李佑辰的博客 - CSDN 博客</h1>
+<div class="title-right">
+    <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/customsshen/customsshen.github.io/issues/10" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><strong>ESXi</strong> <strong>虚拟机安装群辉 7.1</strong></p>
+<p><strong>一、准备工作：</strong></p>
+<p><strong>ESXi 虚拟机一台，版本任意</strong></p>
+<p><strong>群辉 VMDk 引导文件 （文章末尾有提供下载）</strong></p>
+<p><strong>群辉系统安装（pat）文件</strong></p>
+<p><strong>支持兼容情况：ESXi5.5-ESXi8.0 均可正常安装使用。</strong></p>
+<p><strong>这里我使用的 ESXi8.0 进行安装群辉，其他版本的 ESXi 安装方法差不多。</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7c66907e3bb00a847d3abf6f2ea26637fb1d815f5f9655eec20ba4a1108e8d9a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35393564393131333661666134623463393734623238396536313233663031322e706e67"><img src="https://camo.githubusercontent.com/7c66907e3bb00a847d3abf6f2ea26637fb1d815f5f9655eec20ba4a1108e8d9a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35393564393131333661666134623463393734623238396536313233663031322e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/595d91136afa4b4c974b289e6123f012.png" style="max-width: 100%;"></a></p>
+<p><strong>二、安装部署：</strong></p>
+<p><strong>1.</strong> <strong>首先我们点击创建 / 注册虚拟机</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/40b2d86a9004d135f1a64e036ff01c79bc171a5df74946728aa87b3ecd16b01c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61643535363334633136386234393963626165396435353033386132623265622e706e67"><img src="https://camo.githubusercontent.com/40b2d86a9004d135f1a64e036ff01c79bc171a5df74946728aa87b3ecd16b01c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61643535363334633136386234393963626165396435353033386132623265622e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/ad55634c168b499cbae9d55038a2b2eb.png" style="max-width: 100%;"></a></p>
+<p><strong>2.</strong> <strong>选择创建新虚拟机，下一页</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c5851c3cf5a857d04308097f53f5275757208657d475ea468ad371360a723d4b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66303364633530373234376634343265623862313937623637666665656166622e706e67"><img src="https://camo.githubusercontent.com/c5851c3cf5a857d04308097f53f5275757208657d475ea468ad371360a723d4b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66303364633530373234376634343265623862313937623637666665656166622e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/f03dc507247f442eb8b197b67ffeeafb.png" style="max-width: 100%;"></a></p>
+<p><strong>3.</strong> <strong>名称可随意填写，兼容性一般选择默认即可，客户机操作系统系列: 选择 Linux,</strong> <strong>客户机操作系统版本: 其他 4.xliunx（64 位）配置完成后，下一页。</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0bb32f50231bce6f7afde4a53e8abcf7aaa1272b8bfd8d02eb3a4405353a1efb/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38303235313830376234326234323934623239346233356266623331323334302e706e67"><img src="https://camo.githubusercontent.com/0bb32f50231bce6f7afde4a53e8abcf7aaa1272b8bfd8d02eb3a4405353a1efb/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38303235313830376234326234323934623239346233356266623331323334302e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/80251807b42b4294b294b35bfb312340.png" style="max-width: 100%;"></a></p>
+<p><strong>4.</strong> <strong>存储这里随便选即可，下一页</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/410bd0dc96764d5c015540b633527084289b553faf4e2c6c37a14a73aacd8212/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32656139376262656135636234643666383431346336313538333061303234342e706e67"><img src="https://camo.githubusercontent.com/410bd0dc96764d5c015540b633527084289b553faf4e2c6c37a14a73aacd8212/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32656139376262656135636234643666383431346336313538333061303234342e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/2ea97bbea5cb4d6f8414c615830a0244.png" style="max-width: 100%;"></a></p>
+<p><strong>5.</strong> <strong>删除硬盘后，在删除 SCSI 控制器、以及没有用的 CD/DVD 驱动器</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f7f3593cb33edd119ab06184dcfe2bda346fcc63aaeb309d1956d600f585c871/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34393261313661356165633634333031623464333634386465353436303133312e706e67"><img src="https://camo.githubusercontent.com/f7f3593cb33edd119ab06184dcfe2bda346fcc63aaeb309d1956d600f585c871/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34393261313661356165633634333031623464333634386465353436303133312e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/492a16a5aec64301b4d3648de5460131.png" style="max-width: 100%;"></a></p>
+<p><strong>6.</strong> <strong>删除完成后是这样子的，内存和 CPU 可以根据自己的需求进行随便分配，然后点击下一页</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5b59ab0093a07f8f1eb8f2f5f906ce9554b7cfb0d0f2f8cb94c1c01fbb093afd/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f36643264393165633533623634303737393062353532343339643965666363322e706e67"><img src="https://camo.githubusercontent.com/5b59ab0093a07f8f1eb8f2f5f906ce9554b7cfb0d0f2f8cb94c1c01fbb093afd/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f36643264393165633533623634303737393062353532343339643965666363322e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/6d2d91ec53b6407790b552439d9efcc2.png" style="max-width: 100%;"></a></p>
+<p><strong>7. 到这里我们点击完成，虚拟机配置和创建工作就已经做的差不多了，</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b35ca46b661b6e300ced47d8575d0115f240adcca2a50f204fd9511ba90cc2a3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f31633631333865336532653334336438623962376137646239383835303963302e706e67"><img src="https://camo.githubusercontent.com/b35ca46b661b6e300ced47d8575d0115f240adcca2a50f204fd9511ba90cc2a3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f31633631333865336532653334336438623962376137646239383835303963302e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/1c6138e3e2e343d8b9b7a7db988509c0.png" style="max-width: 100%;"></a></p>
+<p><strong>8.</strong> <strong>点击存储，找到我们创建的群辉配置文件的目录，点击上载，上传我们群辉的引导文件。</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fcd5a9e0fa1651f15553e2220a7adec403e01e82a5cd5d5024d65fa4eb4d6e3a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64353933333239636239336134623865383437313036306466303065613632362e706e67"><img src="https://camo.githubusercontent.com/fcd5a9e0fa1651f15553e2220a7adec403e01e82a5cd5d5024d65fa4eb4d6e3a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64353933333239636239336134623865383437313036306466303065613632362e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/d593329cb93a4b8e8471060df00ea626.png" style="max-width: 100%;"></a></p>
+<p><strong>注意：这里要说明一下，ESXi 的引导文件一共有两个，只上传一个是不会显示的，两个文件上传完毕后会合成一个 VMDK 文件，如果上传完两个文件后，发现只有一个文件说明是正常的。</strong></p>
+<p><strong>上传完成后的显示状态</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e4789834305d07960c7df313b9efc029bb3b71c80f49f7eb2a0199e00c88ae33/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65393936303733353263373034663334623031643238663339653865393266622e706e67"><img src="https://camo.githubusercontent.com/e4789834305d07960c7df313b9efc029bb3b71c80f49f7eb2a0199e00c88ae33/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65393936303733353263373034663334623031643238663339653865393266622e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/e99607352c704f34b01d28f39e8e92fb.png" style="max-width: 100%;"></a></p>
+<p><strong>9.</strong> <strong>我们点击刚刚创建好的群辉虚拟机，右键，点击编辑设置</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9d175cc17c2d49dae9228c8fa5eec0a7ee9b96eb1cd969e8e8d3b98b41c0f330/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35313862343765373135333134613136386164316466643938616363313738642e706e67"><img src="https://camo.githubusercontent.com/9d175cc17c2d49dae9228c8fa5eec0a7ee9b96eb1cd969e8e8d3b98b41c0f330/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35313862343765373135333134613136386164316466643938616363313738642e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/518b47e715314a168ad1dfd98acc178d.png" style="max-width: 100%;"></a></p>
+<p><strong>10.</strong> <strong>点击添加硬盘，选择现有硬盘，选择刚刚上传的 VMDK 文件</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/769794d17cca184052571d8e5c103e748d355874d37ee935ec9be91ddba55a93/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f37636462383734313733396634393739383538303339333666313738653063632e706e67"><img src="https://camo.githubusercontent.com/769794d17cca184052571d8e5c103e748d355874d37ee935ec9be91ddba55a93/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f37636462383734313733396634393739383538303339333666313738653063632e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/7cdb8741739f497985803936f178e0cc.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1490aa009e64ee5a60994d280975576f486c03c44e89aeb90a754de680e6d307/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64373337333064373136356234323734386239323937663732396365303365392e706e67"><img src="https://camo.githubusercontent.com/1490aa009e64ee5a60994d280975576f486c03c44e89aeb90a754de680e6d307/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64373337333064373136356234323734386239323937663732396365303365392e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/d73730d7165b42748b9297f729ce03e9.png" style="max-width: 100%;"></a></p>
+<p><strong>11.</strong> <strong>然后大家可以在根据自己的需求可以再添加一块数据盘作为安装系统使用，当然也可以添加直通硬盘，这里教学我就添加一块 50G 的系统盘</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e5b3e32a5357658e70003acf2298fc3958fa512814c8d653b651776f5d76cf1/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65366433623563643839346234316139383732353966366266666562643935372e706e67"><img src="https://camo.githubusercontent.com/7e5b3e32a5357658e70003acf2298fc3958fa512814c8d653b651776f5d76cf1/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65366433623563643839346234316139383732353966366266666562643935372e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/e6d3b5cd894b41a987259f6bffebd957.png" style="max-width: 100%;"></a></p>
+<p><strong>12.</strong> <strong>点击虚拟机选项，引导选项 - 选择应当用来引导虚拟机的固件: 选择 BIOS，然后点击保存，</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/351685ba8b45f3084405711f514bbebcf5cc7e86c2e5f10491940aeed2a15d8a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34616438376638616266633734393632396365376664336262633464623537352e706e67"><img src="https://camo.githubusercontent.com/351685ba8b45f3084405711f514bbebcf5cc7e86c2e5f10491940aeed2a15d8a/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34616438376638616266633734393632396365376664336262633464623537352e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/4ad87f8abfc749629ce7fd3bbc4db575.png" style="max-width: 100%;"></a></p>
+<p><strong>13.</strong> <strong>到这里我们的虚拟机就已经全部配置好了</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e33535d77754e565374461887bc22710673c06ab339c5d340abf7c723ab12160/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35393833663133333566373434613035383264636138313165396661383363302e706e67"><img src="https://camo.githubusercontent.com/e33535d77754e565374461887bc22710673c06ab339c5d340abf7c723ab12160/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f35393833663133333566373434613035383264636138313165396661383363302e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/5983f1335f744a0582dca811e9fa83c0.png" style="max-width: 100%;"></a></p>
+<p><strong>14.</strong> <strong>这里面有一个很重要的配置修改一定要做，否则是无法搜到群晖系统的，就是需要修改 “标准虚拟交换机” 的安全选项，把默认的 “拒绝” 都修改成“接受”</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6e4306464b0c074aeeaa8df6be299b1112c3791bd405b1314d4a8aa93025829f/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64336435666163623034386434363362393063633665346666633334616630642e706e67"><img src="https://camo.githubusercontent.com/6e4306464b0c074aeeaa8df6be299b1112c3791bd405b1314d4a8aa93025829f/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64336435666163623034386434363362393063633665346666633334616630642e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/d3d5facb048d463b90cc6e4ffc34af0d.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bbff15ae12d4966197d8c12d81eb0c084d3a13cbbedd85ccea57653afa8622d5/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f37333762383430303439386334346233396132623631313734636532366463392e706e67"><img src="https://camo.githubusercontent.com/bbff15ae12d4966197d8c12d81eb0c084d3a13cbbedd85ccea57653afa8622d5/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f37333762383430303439386334346233396132623631313734636532366463392e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/737b8400498c44b39a2b61174ce26dc9.png" style="max-width: 100%;"></a></p>
+<p><strong>15.</strong> <strong>配置完成后即可开启电源，到这里出现以下黑色 Dos 窗口，说明已经正常启动成功，使用群辉助手搜索群辉设备安装系统即可使用，群辉系统的安装教程不在做赘述。</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fc68aada7468668e7fb78a7d69eb6eb7e28e9be0d0f431b4108af3e321a721a1/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66613464623936393264373034366662616465366134366639393536666635642e706e67"><img src="https://camo.githubusercontent.com/fc68aada7468668e7fb78a7d69eb6eb7e28e9be0d0f431b4108af3e321a721a1/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66613464623936393264373034366662616465366134366639393536666635642e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/fa4db9692d7046fbade6a46f9956ff5d.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cfc0c1ba413af37ade6c1dba8c242538dbf0b7ffdb7864114a966b6e56ccf2d4/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38336237306664643132323834653164396530616436323632333565643361312e706e67"><img src="https://camo.githubusercontent.com/cfc0c1ba413af37ade6c1dba8c242538dbf0b7ffdb7864114a966b6e56ccf2d4/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38336237306664643132323834653164396530616436323632333565643361312e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/83b70fdd12284e1d9e0ad626235ed3a1.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dafd14ec5756f39a2697c1b56c086a69ff55da3919c5028ed6e4a3968810f9ba/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32613138393031656436646134386433623736623636396663396339333433372e706e67"><img src="https://camo.githubusercontent.com/dafd14ec5756f39a2697c1b56c086a69ff55da3919c5028ed6e4a3968810f9ba/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32613138393031656436646134386433623736623636396663396339333433372e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/2a18901ed6da48d3b76b669fc9c93437.png" style="max-width: 100%;"></a></p>
+<p><strong>OFV</strong> <strong>模板导入教程</strong></p>
+<p><strong>1. 点击创建虚拟机，</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/852f5f044eaba5228bc547b027f245a2d131f34b2ba8ef8f7699ac6bbf3980cb/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64626633336332643364666534383433626134346438633637653537313765612e706e67"><img src="https://camo.githubusercontent.com/852f5f044eaba5228bc547b027f245a2d131f34b2ba8ef8f7699ac6bbf3980cb/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64626633336332643364666534383433626134346438633637653537313765612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/dbf33c2d3dfe4843ba44d8c67e5717ea.png" style="max-width: 100%;"></a></p>
+<p><strong>2.</strong> <strong>选择从 OVF 或者 OVA 文件部署虚拟机，我这里 OVF 使用的是 6.7 版本创建的，支持 6.7-8.0 版本的 ESXi，6.7 以下的可能会导入失败无法使用，建议使用上面的手动创建的方式安装</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/597f8d6d521a6285ef5d56cd4fb53d60f213c6802f1843929234e358dda68eac/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f30353935383536663338333934356163623833363664626564616463336335632e706e67"><img src="https://camo.githubusercontent.com/597f8d6d521a6285ef5d56cd4fb53d60f213c6802f1843929234e358dda68eac/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f30353935383536663338333934356163623833363664626564616463336335632e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/0595856f383945acb8366dbedadc3c5c.png" style="max-width: 100%;"></a></p>
+<p><strong>3.</strong> <strong>输入虚拟机的名称可以随意输入，然后把下载的 OVF 模板文件导入进去</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0393a577a7dae3b34de7d1076ee69d827d38f60613844e7f178089652bc5d5f7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34386636653336373639656334393762616265656431623537383131363134392e706e67"><img src="https://camo.githubusercontent.com/0393a577a7dae3b34de7d1076ee69d827d38f60613844e7f178089652bc5d5f7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f34386636653336373639656334393762616265656431623537383131363134392e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/48f6e36769ec497babeed1b578116149.png" style="max-width: 100%;"></a></p>
+<p><strong>4.</strong> <strong>选择自己的存储路径</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/34ad28080cd476152f73ccdc980748ad79ef88683949111f602fa52895b39384/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f62393164653034336661626134393537393238393564383630656231386234612e706e67"><img src="https://camo.githubusercontent.com/34ad28080cd476152f73ccdc980748ad79ef88683949111f602fa52895b39384/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f62393164653034336661626134393537393238393564383630656231386234612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/b91de043faba495792895d860eb18b4a.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ba8afcd38544db8c5df5df88d9cfa4cb2c0ecd7ee6e7bdfc9448dd47a37d0bfd/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61393963656633333532666134663061396164646531363963666430316232372e706e67"><img src="https://camo.githubusercontent.com/ba8afcd38544db8c5df5df88d9cfa4cb2c0ecd7ee6e7bdfc9448dd47a37d0bfd/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61393963656633333532666134663061396164646531363963666430316232372e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/a99cef3352fa4f0a9adde169cfd01b27.png" style="max-width: 100%;"></a></p>
+<p><strong>5.</strong> <strong>这里提示缺少所需的磁盘映像可以忽略，不影响导入，点击完成</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ea24adc6960408b2feefbc00a94cc4471a2c0546af4be05611862eb3db23db5d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66643830636432333062323334343433393434613937643732333936393861322e706e67"><img src="https://camo.githubusercontent.com/ea24adc6960408b2feefbc00a94cc4471a2c0546af4be05611862eb3db23db5d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66643830636432333062323334343433393434613937643732333936393861322e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/fd80cd230b234443944a97d7239698a2.png" style="max-width: 100%;"></a></p>
+<p><strong>6.</strong> <strong>我们点击虚拟机，编辑，添加一块硬盘，也可以添加直通盘，进行系统安装</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4c5c9cae914bc0dcf05f96b4222333f4734de5e86345ae5ae5c79f02f21be39c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64633933626465646632616134333662383533326631353364333836373436332e706e67"><img src="https://camo.githubusercontent.com/4c5c9cae914bc0dcf05f96b4222333f4734de5e86345ae5ae5c79f02f21be39c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64633933626465646632616134333662383533326631353364333836373436332e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/dc93bdedf2aa436b8532f153d3867463.png" style="max-width: 100%;"></a></p>
+<p><strong>7.</strong> <strong>配置完成后即可开启电源，到这里出现以下黑色 Dos 界面</strong></p>
+<p><strong>就说明已经正常启动成功，使用群辉助手搜索群辉设备安装系统即可使用，群辉系统的安装教程不在做赘述。</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/16a183626658c82771bf145daeb7a95cf26adf49802b21ee32faad6a76bfbda9/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65623237663133613863653334626338393333353130373333613964323931642e706e67"><img src="https://camo.githubusercontent.com/16a183626658c82771bf145daeb7a95cf26adf49802b21ee32faad6a76bfbda9/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65623237663133613863653334626338393333353130373333613964323931642e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/eb27f13a8ce34bc8933510733a9d291d.png" style="max-width: 100%;"></a></p>
+<p><strong>如果出现创建或者导入成功启动后无法搜到到设备的情况请按照以下说明自查：</strong><br>
+<strong>1. 检查自己的 CPU 版本，918 不支持 4 代以下的 CPU 建议使用 DS3622 版本</strong><br>
+<strong>2. 虚拟机</strong> <strong>“标准虚拟交换机”的安全选项，把默认的 “拒绝” 都修改成“接受”</strong><br>
+<strong>3. 修改网卡为 E1000e</strong><br>
+<strong>4. 还没想到仔细看以上三条！</strong></p>
+<p><strong>DSM 虚拟机配置文件打包，包含 918 + 和 3622 两个 7.X 版本的配置文件、引导、vof、系统 pat 包：</strong><br>
+<strong>123 网盘： <a href="https://www.123pan.com/s/HEl8Vv-pbeHh" title="https://www.123pan.com/s/HEl8Vv-pbeHh" rel="nofollow">https://www.123pan.com/s/HEl8Vv-pbeHh</a><br>
+百度网盘：<a href="https://pan.baidu.com/s/1ocef29XNg8D9NApkVmpETg?pwd=6sii" title="https://pan.baidu.com/s/1ocef29XNg8D9NApkVmpETg?pwd=6sii" rel="nofollow">https://pan.baidu.com/s/1ocef29XNg8D9NApkVmpETg?pwd=6sii</a> 提取码:（6sii）<br>
+阿里网盘：<a href="https://www.aliyundrive.com/s/JYAuB2hirRF" title="https://www.aliyundrive.com/s/JYAuB2hirRF" rel="nofollow">https://www.aliyundrive.com/s/JYAuB2hirRF</a><br>
+微云网盘：<a href="https://share.weiyun.com/tzS9wWMs" title="https://share.weiyun.com/tzS9wWMs" rel="nofollow">https://share.weiyun.com/tzS9wWMs</a><br>
+微信网盘：<a href="https://drive.weixin.qq.com/s?k=AIIA1QdUAAsvD4rZmO" title="https://drive.weixin.qq.com/s?k=AIIA1QdUAAsvD4rZmO" rel="nofollow">https://drive.weixin.qq.com/s?k=AIIA1QdUAAsvD4rZmO</a><br>
+天翼网盘：<a href="https://cloud.189.cn/t/UVrANb6Jr6by" title="https://cloud.189.cn/t/UVrANb6Jr6by" rel="nofollow">https://cloud.189.cn/t/UVrANb6Jr6by</a> 访问码: (fc9b)<br>
+和彩云盘：<a href="https://caiyun.139.com/m/i?0W5Cs0FB0DHMy" title="https://caiyun.139.com/m/i?0W5Cs0FB0DHMy" rel="nofollow">https://caiyun.139.com/m/i?0W5Cs0FB0DHMy</a>  提取码:（vyCQ）<br>
+迅雷网盘：<a href="https://pan.xunlei.com/s/VNANCm87GsNXFB2odd_F0Ex4A1?pwd=t6dx" title="https://pan.xunlei.com/s/VNANCm87GsNXFB2odd_F0Ex4A1?pwd=t6dx" rel="nofollow">https://pan.xunlei.com/s/VNANCm87GsNXFB2odd_F0Ex4A1?pwd=t6dx</a> 提取码：(t6dx)</strong><br>
+<strong>ESXi8.0 镜像下载地址：</strong><br>
+<strong><a href="https://pan.baidu.com/s/1tDXJ5zf17cDY0llwMhLq1A?pwd=3z8d" title="https://pan.baidu.com/s/1tDXJ5zf17cDY0llwMhLq1A?pwd=3z8d" rel="nofollow">https://pan.baidu.com/s/1tDXJ5zf17cDY0llwMhLq1A?pwd=3z8d</a> 提取码：3z8d</strong><br>
+<a href="https://www.123pan.com/s/HEl8Vv-MieHh" title="https://www.123pan.com/s/HEl8Vv-MieHh" rel="nofollow">https://www.123pan.com/s/HEl8Vv-MieHh</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","customsshen/customsshen.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+
+</html>
