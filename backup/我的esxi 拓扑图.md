@@ -44,7 +44,7 @@ docker run -dit \
 ``` docker
 ql repo [https://github.com/customsshen/ql.git](https://github.com/customsshen/ql.git) "main"
 
-customsshen:ghp_b8Q8mTsNZSaiJeu2R5oT1LphzkKb1z06J!!!
+customsshen:keys
 ```
 
 ### portainer
