@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:23:04 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>ESXi8.0 虚拟机安装黑群晖 7.1.1_esxi 安装黑群晖_李佑辰的博客 - CSDN 博客</title><link>https://customsshen.github.io/post/ESXi8.0%20-xu-ni-ji-an-zhuang-hei-qun-hui-%207.1.1_esxi%20-an-zhuang-hei-qun-hui-_-li-you-chen-de-bo-ke-%20-%20CSDN%20-bo-ke.html</link><description>**ESXi** **虚拟机安装群辉 7.1**&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://customsshen.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Mon, 08 Apr 2024 02:23:37 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>esxi查看硬盘健康状况以及卸载软件包</title><link>https://customsshen.github.io/post/esxi-cha-kan-ying-pan-jian-kang-zhuang-kuang-yi-ji-xie-zai-ruan-jian-bao.html</link><description># esxcli&#13;
+&#13;
+## 列出硬盘&#13;
+&#13;
+```bash&#13;
+esxcli storage core device list|grep "Display Name"&#13;
+```&#13;
+&#13;
+查看smart&#13;
+&#13;
+```bash&#13;
+esxcli storage core device smart get -d t10.NVMe____ZHITAI_PC005_Active_512GB_______________4100E7D000B728A4&#13;
+```。</description><guid isPermaLink="true">https://customsshen.github.io/post/esxi-cha-kan-ying-pan-jian-kang-zhuang-kuang-yi-ji-xie-zai-ruan-jian-bao.html</guid><pubDate>Mon, 08 Apr 2024 02:23:12 +0000</pubDate></item><item><title>ESXi8.0 虚拟机安装黑群晖 7.1.1_esxi 安装黑群晖_李佑辰的博客 - CSDN 博客</title><link>https://customsshen.github.io/post/ESXi8.0%20-xu-ni-ji-an-zhuang-hei-qun-hui-%207.1.1_esxi%20-an-zhuang-hei-qun-hui-_-li-you-chen-de-bo-ke-%20-%20CSDN%20-bo-ke.html</link><description>**ESXi** **虚拟机安装群辉 7.1**&#13;
 &#13;
 **一、准备工作：**&#13;
 &#13;
