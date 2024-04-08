@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose">
+<title>如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose</h1>
+<div class="title-right">
+    <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/customsshen/customsshen.github.io/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>作者： <a href="https://ostechnix.com/install-docker-ubuntu/" rel="nofollow">Sk</a> 译者： <a href="https://linux.cn/lctt/" rel="nofollow">LCTT</a> <a href="/lctt/Donkey-Hao">Donkey</a></p>
+<p>| 2022-07-28 14:26   评论: <a href="portal.php?mod=comment&amp;id=14871&amp;idtype=aid" title="查看全部评论"><em>2</em></a></p>
+<p>在 Ubuntu 中使用 Docker Compose 安装 Docker 引擎的分步指导。</p>
+<p>在这篇文章中，我们将会明白 Docker 是什么，如何 <strong>在 Ubuntu 中安装 Docker 引擎</strong> 。此外，我们也将会明白如何 <strong>安装 Docker Compose</strong> ，它是一个定义并运行多容器的 Docker 应用。</p>
+<p>我们已经在 Ubuntu 22.04 LTS 中正式的测试了这份指南。然而，它也应该对旧版本如 20.04 LTS 和 18.04 LTS 有效。为了更好的安全性和稳定性，我推荐你使用最新的版本 —— Ubuntu 22.04 LTS 。</p>
+<h3>什么是 Docker ？</h3>
+<p><strong>Docker</strong> 是一个快捷、轻便的系统级虚拟化技术，开发者和系统管理员可以使用它构建具备所有必要依赖项的应用程序，并将其作为一个包发布。</p>
+<p>Docker 与其他如 VMWare 、Xen 、以及 VirtualBox 等工具的虚拟化方式不同，每个虚拟机不需要单独的客户操作系统。</p>
+<p>所有的 Docker 容器有效地共享同一个主机系统内核。每个容器都在同一个操作系统中的隔离用户空间中运行。</p>
+<p>Docker 容器可以在任何 Linux 版本上运行。比如说你使用 Fedora ，我用 Ubuntu 。我们能相互开发、共享并分发 Docker 镜像。</p>
+<p>你无需担心操作系统、软件以及自定义设置，任何事都不用担心。只要我们的主机安装了 Docker ，就能持续开发。简言之，Docker 能够在任何地方运行！</p>
+<p>前文中你读到了两个词：<strong>Docker 镜像</strong> 和 <strong>Docker 容器</strong> ，或许你在想它们的区别。</p>
+<p>通俗地说，Docker 镜像是一个描述容器应该如何表现的文件，而 Docker 容器是 Docker 镜像的运行（或停止）状态。</p>
+<p>希望你能够理解 Docker 的基础概念。更多细节，你可以参考文章末尾的 Docker 官方指导手册。</p>
+<h3>Docker 依赖项</h3>
+<p>为了安装并配置 Docker ，你的系统必须满足下列最低要求：</p>
+<ol>
+<li>64 位 Linux 或 Windows 系统</li>
+<li>如果使用 Linux ，内核版本必须不低于 3.10</li>
+<li>能够使用 <code class="notranslate">sudo</code> 权限的用户</li>
+<li>在你系统 BIOS 上启用了 VT（虚拟化技术）支持 on your system BIOS（参考: <a href="https://ostechnix.com/how-to-find-if-a-cpu-supports-virtualization-technology-vt/" rel="nofollow">如何查看 CPU 支持 虚拟化技术（VT）</a>）</li>
+<li>你的系统应该联网</li>
+</ol>
+<p>在 Linux ，在终端上运行以下命令验证内核以及架构详细信息：</p>
+<pre class="notranslate"><code class="notranslate">$ uname -a
+</code></pre>
+<p>输出样例：</p>
+<pre class="notranslate"><code class="notranslate">Linux Ubuntu22CT 5.15.35-3-pve #1 SMP PVE 5.15.35-6 (Fri, 17 Jun 2022 13:42:35 +0200) x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+<p>正如上面你看到的那样，我的 Ubuntu 系统内核版本是 <strong>5.15.35-3-pve</strong> 并且系统架构是 <strong>64 位</strong>（<strong>x86_64 x86_64 x86_64 GNU/Linux</strong>）。</p>
+<p><strong>注意：</strong> 这里，我在 <a href="https://ostechnix.com/install-proxmox-ve/" rel="nofollow">Proxmox</a> 中使用 Ubuntu 22.04 容器。这是你看到上方内核版本中有 “pve” 字符的原因。如果你正在使用 Ubuntu 实体（或者虚拟）机，你将看到系统版本为 <strong>5.15.35-3-generic</strong> 。</p>
+<p>内核版本需要不低于最低要求的版本，并且是 64 位机器。这样不会有任何问题，我们能顺利安装并使用 Docker 。</p>
+<p>请注意你使用哪一个 Ubuntu 系统不重要。并且你使用 Ubuntu 桌面或服务器版本，亦或者其他 Ubuntu 变种如 Lubuntu 、Kubuntu 、Xubuntu ，都不重要。</p>
+<p>只要你的系统内核版本不低于 3.10 ，并且是 64 位系统，Docker 都会正常运行。</p>
+<h3>在 Ubuntu 22.04 LTS 中安装 Docker</h3>
+<p>首先，更新你的 Ubuntu 系统。</p>
+<h4>1、更新 Ubuntu</h4>
+<p>打开终端，依次运行下列命令：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt full-upgrade
+
+</code></pre>
+<h4>2、添加 Docker 库</h4>
+<p>首先，安装必要的证书并允许 apt 包管理器使用以下命令通过 HTTPS 使用存储库：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
+</code></pre>
+<p>然后，运行下列命令添加 Docker 的官方 GPG 密钥：</p>
+<pre class="notranslate"><code class="notranslate">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre>
+<p>添加 Docker 官方库：</p>
+<pre class="notranslate"><code class="notranslate">$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+<p>使用命令更新 Ubuntu 源列表：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo apt update
+</code></pre>
+<h4>3、安装 Docker</h4>
+<p>最后，运行下列命令在 Ubuntu 22.04 LTS 服务器中安装最新 Docker CE：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d7806c82458f830b85de101f39ce29d9e90bda2205d86eb23d3f0563552db84e/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f31343236313871616e6e6c767a6e776e7677757a61692e706e67"><img src="https://camo.githubusercontent.com/d7806c82458f830b85de101f39ce29d9e90bda2205d86eb23d3f0563552db84e/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f31343236313871616e6e6c767a6e776e7677757a61692e706e67" alt="" data-canonical-src="https://img.linux.net.cn/data/attachment/album/202207/28/142618qannlvznwnvwuzai.png" style="max-width: 100%;"></a></p>
+<p><em>Install Docker In Ubuntu</em></p>
+<p>当然你也可以安装其他版本 Docker 。运行下列命令检查可以安装的 Docker 版本：</p>
+<pre class="notranslate"><code class="notranslate">$ apt-cache madison docker-ce
+</code></pre>
+<p>输出样例：</p>
+<pre class="notranslate"><code class="notranslate">docker-ce | 5:20.10.17~3-0~ubuntu-jammy | https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+docker-ce | 5:20.10.16~3-0~ubuntu-jammy | https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+docker-ce | 5:20.10.15~3-0~ubuntu-jammy | https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+docker-ce | 5:20.10.14~3-0~ubuntu-jammy | https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+docker-ce | 5:20.10.13~3-0~ubuntu-jammy | https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
+
+</code></pre>
+<p>你可以挑选上面列表中的任何版本进行安装。例如，安装 <strong>5:20.10.16~ 3-0 ~ubuntu-jammy</strong> 这个版本，运行：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo apt install docker-ce=5:20.10.16~3-0~ubuntu-jammy docker-ce-cli=5:20.10.16~3-0~ubuntu-jammy containerd.io
+</code></pre>
+<p>安装完成后，运行如下命令验证 Docker 服务是否在运行：</p>
+<pre class="notranslate"><code class="notranslate">$ systemctl status docker
+</code></pre>
+<p>你会看到类似下面的输出：</p>
+<pre class="notranslate"><code class="notranslate">* docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Mon 2022-06-27 13:07:43 UTC; 3min 4s ago
+TriggeredBy: * docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 2208 (dockerd)
+      Tasks: 8
+     Memory: 29.6M
+        CPU: 126ms
+     CGroup: /system.slice/docker.service
+             `-2208 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.071453522Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:&gt;
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.071459974Z" level=info msg="ClientConn switching balancer to \"pick_first\"" &gt;
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.130989294Z" level=info msg="Loading containers: start."
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.187439756Z" level=info msg="Default bridge (docker0) is assigned with an IP a&gt;
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.235966874Z" level=info msg="Loading containers: done."
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.240149866Z" level=warning msg="Not using native diff for overlay2, this may c&gt;
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.240281966Z" level=info msg="Docker daemon" commit=a89b842 graphdriver(s)=over&gt;
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.240386856Z" level=info msg="Daemon has completed initialization"
+Jun 27 13:07:43 Ubuntu22CT systemd[1]: Started Docker Application Container Engine.
+Jun 27 13:07:43 Ubuntu22CT dockerd[2208]: time="2022-06-27T13:07:43.276336600Z" level=info msg="API listen on /run/docker.sock"
+
+</code></pre>
+<p>好极了！Docker 服务已启动并运行！</p>
+<p>如果没有运行，运行以下命令运行 Docker 服务：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo systemctl start docker
+</code></pre>
+<p>使 Docker 服务在每次重启时自动启动：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo systemctl enable docker
+</code></pre>
+<p>可以使用以下命令查看已安装的 Docker 版本：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo docker version
+</code></pre>
+<p>输出样例：</p>
+<pre class="notranslate"><code class="notranslate">Client: Docker Engine - Community
+  Version:           20.10.17
+  API version:       1.41
+  Go version:        go1.17.11
+  Git commit:        100c701
+  Built:             Mon Jun  6 23:02:46 2022
+  OS/Arch:           linux/amd64
+  Context:           default
+  Experimental:      true
+Server: Docker Engine - Community
+  Engine:
+    Version:          20.10.17
+    API version:      1.41 (minimum version 1.12)
+    Go version:       go1.17.11
+    Git commit:       a89b842
+  Built:            Mon Jun  6 23:00:51 2022
+    OS/Arch:          linux/amd64
+    Experimental:     false
+  containerd:
+    Version:          1.6.6
+    GitCommit:        10c12954828e7c7c9b6e0ea9b0c02b01407d3ae1
+  runc:
+    Version:          1.1.2
+    GitCommit:        v1.1.2-0-ga916309
+  docker-init:
+    Version:          0.19.0
+    GitCommit:        de40ad0
+
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ece301af72906671696f5c3ede73c645bfe58773319b6ae9877a56d3b67c9168/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f313432363139753839676f71786562396d717a39676c2e706e67"><img src="https://camo.githubusercontent.com/ece301af72906671696f5c3ede73c645bfe58773319b6ae9877a56d3b67c9168/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f313432363139753839676f71786562396d717a39676c2e706e67" alt="" data-canonical-src="https://img.linux.net.cn/data/attachment/album/202207/28/142619u89goqxeb9mqz9gl.png" style="max-width: 100%;"></a></p>
+<p><em>Check Docker Version</em></p>
+<h4>4、测试 Docker</h4>
+<p>让我们继续，测试 Docker 是否运行正常：</p>
+<p>运行：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo docker run hello-world
+</code></pre>
+<p>上述命令会下载一个 Docker 测试镜像，并在容器内执行一个 “hello_world” 样例程序。</p>
+<p>如果你看到类似下方的输出，那么祝贺你！Docker 正常运行在你的 Ubuntu 系统中了。</p>
+<pre class="notranslate"><code class="notranslate">Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete 
+Digest: sha256:13e367d31ae85359f42d637adf6da428f76d75dc9afeb3c21faea0d976f5c651
+Status: Downloaded newer image for hello-world:latest
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9820c5cc797f24517a48b478405508c6f23a51b2634bcb46ae3531575eeb187d/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f3134323632306430353576756774726b35356b30326e2e706e67"><img src="https://camo.githubusercontent.com/9820c5cc797f24517a48b478405508c6f23a51b2634bcb46ae3531575eeb187d/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f646174612f6174746163686d656e742f616c62756d2f3230323230372f32382f3134323632306430353576756774726b35356b30326e2e706e67" alt="" data-canonical-src="https://img.linux.net.cn/data/attachment/album/202207/28/142620d055vugtrk55k02n.png" style="max-width: 100%;"></a></p>
+<p><em>Run Hello World Docker Container</em></p>
+<p>很好！可以使用 Docker 了。</p>
+<h4>5、作为非 root 用户运行 Docker （选做）</h4>
+<p>默认情况下，Docker 守护进程绑定到 Unix 套接字而不是 TCP 端口。由于 <strong>Unix 套接字由 root 用户拥有</strong>，Docker 守护程序将仅以 root 用户身份运行。因此，普通用户无法执行大多数 Docker 命令。</p>
+<p>如果你想要在 Linux 中作为非 root 用户运行 Docker ，参考下方链接：</p>
+<ul>
+<li><a href="https://ostechnix.com/how-to-run-docker-as-non-root-user-in-linux/" rel="nofollow">如何在 Linux 中作为非 root 用户运行 Docker</a></li>
+</ul>
+<p>我个人不这样做也<strong>不推荐</strong>你这么做。如果你不会在互联网上暴露你的系统，那没问题。然而，不要在生产系统中以非 root 用户身份运行 Docker 。</p>
+<h3>在 Ubuntu 中安装 Docker Compose</h3>
+<p><strong>Docker Compose</strong> 是一个可用于定义和运行多容器 Docker 应用程序的工具。使用 Compose，你可以使用 Compose 文件来配置应用程序的服务。然后，使用单个命令，你可以从配置中创建和启动所有服务。</p>
+<p>下列任何方式都可以安装 Docker Compose 。</p>
+<h4>方式 1、使用二进制文件安装 Docker Compose</h4>
+<p>从 <a href="https://github.com/docker/compose/releases">这里</a> 下载最新 Docker Compose 。</p>
+<p>当我在写这篇文章时，最新版本是 <strong>2.6.1</strong> 。</p>
+<p>运行下列命令安装最新稳定的 Docker Compose 文件：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo curl -L "https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+</code></pre>
+<p>如果有更新版本，只需要将上述命令中的 <strong>v2.6.1</strong> 替换为最新的版本号即可。请不要忘记数字前的 <strong>"v"</strong> 。</p>
+<p>最后，使用下列命令赋予二进制文件可执行权限：</p>
+<pre class="notranslate"><code class="notranslate">$ sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>运行下列命令检查安装的 Docker Compose 版本：</p>
+<pre class="notranslate"><code class="notranslate">$ docker-compose version
+Docker Compose version v2.6.1
+
+</code></pre>
+<h4>方式 2、使用 Pip 安装 Docker Compose</h4>
+<p>或许，我们可以使用 <strong>Pip</strong> 安装 Docker Compose 。Pip 是 Python 包管理器，用来安装使用 Python 编写的应用程序。</p>
+<p>参考下列链接安装 Pip 。</p>
+<ul>
+<li><a href="https://ostechnix.com/manage-python-packages-using-pip/" rel="nofollow">如何使用 Pip 管理 Python 包</a></li>
+</ul>
+<p>安装 Pip 后，运行以下命令安装 Docker Compose。下列命令对于所有 Linux 发行版都是相同的！</p>
+<pre class="notranslate"><code class="notranslate">$ pip install docker-compose
+</code></pre>
+<p>安装 Docker Compose 后，使用下列命令检查版本：</p>
+<pre class="notranslate"><code class="notranslate">$ docker-compose --version
+</code></pre>
+<p>你将会看到类似下方的输出：</p>
+<pre class="notranslate"><code class="notranslate">docker-compose version 2.6.1, build 8a1c60f6
+</code></pre>
+<p>恭喜你！我们已经成功安装了 Docker 社区版和 Docker Compose 。</p>
+<p>安装了 Docker，然后呢？查看本系列的下一篇文章，了解 Docker 基础知识。</p>
+<ul>
+<li><a href="https://ostechnix.com/getting-started-with-docker/" rel="nofollow">开始使用 Docker</a></li>
+</ul>
+<p>要在基于 RPM 的系统（例如 RHEL、Fedora、CentOS、AlmaLinux、Rocky Linux 和 openSUSE）中安装 Docker，请参考以下链接。</p>
+<ul>
+<li><a href="https://ostechnix.com/install-docker-centos/" rel="nofollow">在 CentOS 中安装 Docker</a></li>
+</ul>
+<h3>总结</h3>
+<p>在这篇教程中，我们讨论了 Docker 是什么，如何在 Ubuntu 22.04 LTS Jammy Jellyfish 中安装 Docker 。然后学习了如何通过运行 hello-world Docker 镜像测试 Docker 是否成功安装。最后，我们通过使用两种不同的方式安装 Docker Compose 作为本教程的结尾。</p>
+<h3>资料</h3>
+<ul>
+<li><a href="https://www.docker.com/" rel="nofollow">Docker 主页</a></li>
+</ul>
+<p>via: <a href="https://ostechnix.com/install-docker-ubuntu/" rel="nofollow">https://ostechnix.com/install-docker-ubuntu/</a></p>
+<p>作者：<a href="https://ostechnix.com/author/sk/" rel="nofollow">sk</a> 选题：<a href="https://github.com/lkxed">lkxed</a> 译者：<a href="https://github.com/Donkey-Hao">Donkey</a> 校对：<a href="https://github.com/wxy">wxy</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/18d6788c4f0d24db8dcebffade60b4cedd015a4b1de4a613a32a38b1e36a6022/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f7374617469632f696d6167652f636f6d6d6f6e2f6c696e6973692e737667"><img src="https://camo.githubusercontent.com/18d6788c4f0d24db8dcebffade60b4cedd015a4b1de4a613a32a38b1e36a6022/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f7374617469632f696d6167652f636f6d6d6f6e2f6c696e6973692e737667" alt="" data-canonical-src="https://img.linux.net.cn/static/image/common/linisi.svg" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","customsshen/customsshen.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+
+</html>
