@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -46,12 +46,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-    <a href="https://github.com/customsshen/customsshen.github.io/issues/17" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
     </a>
     
@@ -102,23 +96,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>（4）然后使用 mosquitto_passwd 命令创建用户（比如下面我们创建了一个名为 hangge 的用户，密码为 123），添加完毕后执行 exit 退出容器。</p>
 <table role="table"><tbody><tr><td><p>1</p></td><td><div><p><code class="notranslate">mosquitto_passwd -b /mosquitto/config/pwfile.conf hangge 123</code></p></div></td></tr></tbody></table>
 <p>（5）最后执行如下命令启动容器，这样就为 mosquitto 服务增加了权限验证功能，需要使用我们前面创建的用户密码才能连接。</p></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
 <script>
-if(""!=""){
+if("02/16/2015"!=""){
     var now=new Date();
-    var startSite=new Date("");
+    var startSite=new Date("02/16/2015");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
-    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    if("苏"!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
     else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
 }
 </script>

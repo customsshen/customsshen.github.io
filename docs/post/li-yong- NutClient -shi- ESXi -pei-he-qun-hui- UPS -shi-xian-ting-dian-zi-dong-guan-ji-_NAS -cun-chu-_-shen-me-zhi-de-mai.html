@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -46,12 +46,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-    <a href="https://github.com/customsshen/customsshen.github.io/issues/6" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
     </a>
     
@@ -159,23 +153,23 @@ UserVars.NutUser：monuser</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e233184fafcdbb86836192fbd8f3b295f85e07b7ad00aca6ae6b8eeeca06a2e1/68747470733a2f2f7265732e736d7a646d2e636f6d2f696d616765732f656d6f74696f6e732f33332e706e67"><img src="https://camo.githubusercontent.com/e233184fafcdbb86836192fbd8f3b295f85e07b7ad00aca6ae6b8eeeca06a2e1/68747470733a2f2f7265732e736d7a646d2e636f6d2f696d616765732f656d6f74696f6e732f33332e706e67" alt="" data-canonical-src="https://res.smzdm.com/images/emotions/33.png" style="max-width: 100%;"></a></p>
 <p>作者声明本文无利益相关，欢迎值友理性交流，和谐讨论～</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cba9bdca1629cb852caed457a7041339c8289f80b0f4def3d7398d7aa5281404/68747470733a2f2f7265732e736d7a646d2e636f6d2f70632f70635f73686571752f646973742f696d672f7468652d656e642e706e67"><img src="https://camo.githubusercontent.com/cba9bdca1629cb852caed457a7041339c8289f80b0f4def3d7398d7aa5281404/68747470733a2f2f7265732e736d7a646d2e636f6d2f70632f70635f73686571752f646973742f696d672f7468652d656e642e706e67" alt="" data-canonical-src="https://res.smzdm.com/pc/pc_shequ/dist/img/the-end.png" style="max-width: 100%;"></a></p></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
 <script>
-if(""!=""){
+if("02/16/2015"!=""){
     var now=new Date();
-    var startSite=new Date("");
+    var startSite=new Date("02/16/2015");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
-    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    if("苏"!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
     else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
 }
 </script>

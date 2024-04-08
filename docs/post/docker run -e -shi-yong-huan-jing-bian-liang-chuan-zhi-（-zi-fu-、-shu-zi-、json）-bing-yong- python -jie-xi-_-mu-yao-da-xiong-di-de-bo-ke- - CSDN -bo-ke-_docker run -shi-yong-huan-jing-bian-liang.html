@@ -9,8 +9,8 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="修改搭建 MQTT 服务器（Docker 版）">
-<title>修改搭建 MQTT 服务器（Docker 版）</title>
+<meta name="description" content="docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量">
+<title>docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量</title>
 
 
 </head>
@@ -41,7 +41,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">修改搭建 MQTT 服务器（Docker 版）</h1>
+<h1 class="postTitle">docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量</h1>
 <div class="title-right">
     <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -59,131 +59,39 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>总述</h1>
-<h2>文档介绍</h2>
-<p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布 / 订阅（publish/subscribe）模式的 "轻量级" 通讯协议。</p>
-<p>在软件开发中，常使用 MQTT 协议进行消息广播，因为 MQTT 是一个协议，所以我们需要搭建一个支持 MQTT 协议的服务器，使服务端和客户端能够通过这个 MQTT 服务器（broker）进行消息转发、通信。</p>
-<h2>部署架构概述</h2>
-<p>MQTT 单节点：192.168.244.84:1883</p>
-<h1>部署</h1>
-<h2>安装 docker</h2>
-<h3>查看内核版本（需要 CentOS7 或以上版本）</h3>
-<pre class="notranslate"><code class="notranslate">uname -r 
+<div class="markdown-body" id="postBody"><h1>第一步，代码编写</h1>
+<h4>Dockerfile</h4>
+<p>Dockerfile 的后半部分（设置<a href="https://so.csdn.net/so/search?q=%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F&amp;spm=1001.2101.3001.7020" rel="nofollow">环境变量</a>默认值，以及传到 run.sh 中）<br>
+一个坑：ENTRYPOINT 后面不能用 [] 的形式 否则无法读取环境变量值。</p>
+<pre class="notranslate"><code class="notranslate"># 设置环境默认值
+ENV task_id=123
+ENV task_param=1
 
+# entrypoint是容器入口 
+# 不能用下面[]这种形式，否则读取不到环境变量!!
+# ENTRYPOINT  ["/bin/bash", "/code/run.sh"]
+ENTRYPOINT  /bin/bash /code/run.sh $task_id $task_param
 </code></pre>
-<h3>把 yum 包更新到最新</h3>
-<pre class="notranslate"><code class="notranslate">sudo yum update
-
+<h4>run.sh</h4>
+<p>用来输出传过来的环境变量，用来验证环境变量是否生效；并执行 python 脚本</p>
+<pre class="notranslate"><code class="notranslate">echo "task_id = ${task_id}"
+echo "task_param = ${task_param}"
+python /code/main.py
 </code></pre>
-<h3>安装需要的软件包, yum-util 提供 yum-config-manager 功能，另外两个是 devicemapper 驱动依赖的。</h3>
-<pre class="notranslate"><code class="notranslate">sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+<h4>main.py</h4>
+<p>python 脚本，用<code class="notranslate">os.environ</code>读取环境变量。</p>
+<pre class="notranslate"><code class="notranslate">import os
 
+task_id = os.environ['task_id']
+task_param = os.environ['task_param']
 </code></pre>
-<h3>设置 yum 源</h3>
-<pre class="notranslate"><code class="notranslate">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
-</code></pre>
-<h3>查看仓库中 docker 版本</h3>
-<pre class="notranslate"><code class="notranslate">yum list docker-ce --showduplicates | sort -r
-
-</code></pre>
-<h3>安装 docker</h3>
-<pre class="notranslate"><code class="notranslate">sudo yum install docker-ce
-
-</code></pre>
-<h3>命令测试：</h3>
-<h3>启动 Docker、设置开机启动、停止 Docker</h3>
-<pre class="notranslate"><code class="notranslate">sudo systemctl start docker
-sudo systemctl enable docker
-sudo systemctl stop docker
-
-</code></pre>
-<h3>查看版本</h3>
-<pre class="notranslate"><code class="notranslate">docker version
-
-</code></pre>
-<h3>使用一下确认是否启动成功, 使用 search 命令</h3>
-<pre class="notranslate"><code class="notranslate">docker search mysql
-
-</code></pre>
-<h3>查看日志状态成功日志</h3>
-<pre class="notranslate"><code class="notranslate">systemctl status docker.service
-
-</code></pre>
-<h2>下载 MQTT 服务器 emqx</h2>
-<p><em>EMQ X</em> (Erlang/Enterprise/Elastic MQTT Broker) 是基于 Erlang/OTP 平台开发的开源物联网 MQTT 消息服务器。官方有提供 Docker 版本，可以直接使用 docker pull 进行下载。</p>
-<p>它是目前 MQTT 服务器中，最优秀的产品之一，其优点有：</p>
-<ol>
-<li>稳定承载大规模的 MQTT 客户端连接，单服务器节点支持 50 万到 100 万连接。</li>
-<li>分布式节点集群，快速低延时的消息路由，单集群支持 1000 万规模的路由。</li>
-<li>消息服务器内扩展，支持定制多种认证方式、高效存储消息到后端数据库。</li>
-<li>完整物联网协议支持，MQTT、MQTT-SN、CoAP、LwM2M、WebSocket 或私有协议支持。</li>
-</ol>
-<p>下载命令：</p>
-<pre lang="docker" class="notranslate"><code class="notranslate">docker pull emqx
-
-</code></pre>
-<p>启动容器</p>
-<pre lang="docker" class="notranslate"><code class="notranslate">docker run  --name=mqtt  --net=host --restart=always -d emqx
-
-</code></pre>
-<p><strong>启动后，登录 mqtt 管理页面：http://{ip}:18083，确认部署成功。</strong><br>
-默认账号：admin<br>
-默认密码：public</p>
-<p><a target="_blank" rel="noopener noreferrer" href="photo/20220609163644119.png"><img src="photo/20220609163644119.png" alt="" style="max-width: 100%;"></a></p>
-<p>接下来我们可以通过编写 client 端和 server 端的脚本，来模拟订阅和发布。</p>
-<p>client 端测试脚本：</p>
-<pre class="notranslate"><code class="notranslate">var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://192.168.244.84:1883', {
-    username: "admin",
-    password: "public",
-    clientId: 'client9'
-});
-
-function getYYYYMMDDhhmmssByDate() {
-    let date = new Date();
-    let value = date.getFullYear() * 10000000000 +
-        (date.getMonth() + 1) * 100000000 +
-        date.getDate() * 1000000 +
-        date.getHours() * 10000 +
-        date.getMinutes() * 100 +
-        date.getSeconds();
-    return value;
-};
-
-
-client.on('connect', function() {
-    console.log("connect success");
-    client.subscribe('/server/task/roleId/1/update_task_data');
-});
-
-client.on('message', function(topic, message, packet) {
-    console.log(" ");
-    console.log("time: ", getYYYYMMDDhhmmssByDate());
-    var jsonStr = message.toString()
-    console.log("jsonStr: " + jsonStr);
-    console.log(" ");
-});
-
-</code></pre>
-<p>server 端脚本：</p>
-<pre class="notranslate"><code class="notranslate">var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://192.168.244.84:1883', {
-    username: 'admin',
-    password: 'public',
-    clientId: 'server1'
-});
-
-
-var jsonStr = JSON.stringify({ "event": "update_task_data", "data": { "arrTaskId": [], "arrTaskInst": [{ "id": 1, "roleId": 1, "moduleId": "0", "userId": 0, "taskId": 999, "finish": 0, "taskNodeId": 15, "taskNodeStatus": 0, "taskNodeStartTime": 20210811, "beforeNodeId": 14 }] } });
-// 推送的频道和数据
-//client.publish("/server/task/roleId/1/update_task_data", jsonStr, { qos: 2, retain: false });
-
-
-
-</code></pre>
-<p>运行结果：</p>
-<p><a target="_blank" rel="noopener noreferrer" href="photo/20220609163644181.png"><img src="photo/20220609163644181.png" alt="" style="max-width: 100%;"></a></p></div>
+<h1>第二步，运行 <a href="https://so.csdn.net/so/search?q=docker&amp;spm=1001.2101.3001.7020" rel="nofollow">docker</a></h1>
+<p>构建镜像：<code class="notranslate">docker build -t image_name:v1.211020 -f ./Dockerfile .</code><br>
+生成容器并运行：<code class="notranslate">docker run -e task_id="ua084d" -e task_param={"tag": "BERT"} --name MO_CLS_ua084d 9c6ad6da --rm</code></p>
+<p>这里踩的一个坑：<br>
+注意：docker run 的 - e 参数要紧跟 run，否则不生效!!<br>
+注意：docker run 的 - e 参数要紧跟 run，否则不生效!!<br>
+注意：docker run 的 - e 参数要紧跟 run，否则不生效!!</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>

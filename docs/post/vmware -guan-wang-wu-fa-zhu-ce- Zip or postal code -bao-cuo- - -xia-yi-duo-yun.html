@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -49,12 +49,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/customsshen/customsshen.github.io/issues/13" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
@@ -82,23 +76,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <p>以下参考：</p>
 <table role="table"><thead><tr><th>美国各洲</th><th>城市</th><th>邮编</th></tr></thead><tbody><tr><td>California (CA)</td><td>Sacramento</td><td>94203 至 94209</td></tr><tr><td>California (CA)</td><td>Los Angeles</td><td>90001 至 90089</td></tr><tr><td>California (CA)</td><td>Beverly Hills</td><td>90209 至 90213</td></tr><tr><td>District of Columbia (DC)</td><td>Washington</td><td>20001 至 20020</td></tr><tr><td>New York (NY)</td><td>New York</td><td>10001 至 10048</td></tr></tbody></table></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
 <script>
-if(""!=""){
+if("02/16/2015"!=""){
     var now=new Date();
-    var startSite=new Date("");
+    var startSite=new Date("02/16/2015");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
-    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    if("苏"!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
     else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
 }
 </script>

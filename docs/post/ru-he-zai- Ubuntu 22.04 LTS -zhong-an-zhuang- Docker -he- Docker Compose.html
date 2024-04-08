@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -46,12 +46,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-    <a href="https://github.com/customsshen/customsshen.github.io/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
     </a>
     
@@ -301,23 +295,23 @@ Docker Compose version v2.6.1
 <p>via: <a href="https://ostechnix.com/install-docker-ubuntu/" rel="nofollow">https://ostechnix.com/install-docker-ubuntu/</a></p>
 <p>作者：<a href="https://ostechnix.com/author/sk/" rel="nofollow">sk</a> 选题：<a href="https://github.com/lkxed">lkxed</a> 译者：<a href="https://github.com/Donkey-Hao">Donkey</a> 校对：<a href="https://github.com/wxy">wxy</a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/18d6788c4f0d24db8dcebffade60b4cedd015a4b1de4a613a32a38b1e36a6022/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f7374617469632f696d6167652f636f6d6d6f6e2f6c696e6973692e737667"><img src="https://camo.githubusercontent.com/18d6788c4f0d24db8dcebffade60b4cedd015a4b1de4a613a32a38b1e36a6022/68747470733a2f2f696d672e6c696e75782e6e65742e636e2f7374617469632f696d6167652f636f6d6d6f6e2f6c696e6973692e737667" alt="" data-canonical-src="https://img.linux.net.cn/static/image/common/linisi.svg" style="max-width: 100%;"></a></p></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> Blog Title </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
 <script>
-if(""!=""){
+if("02/16/2015"!=""){
     var now=new Date();
-    var startSite=new Date("");
+    var startSite=new Date("02/16/2015");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
-    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    if("苏"!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
     else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
 }
 </script>
