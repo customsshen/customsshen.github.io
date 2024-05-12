@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="Anaconda 创建虚拟环境及离线迁移_anaconda 离线创建环境">
+<title>Anaconda 创建虚拟环境及离线迁移_anaconda 离线创建环境</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Anaconda 创建虚拟环境及离线迁移_anaconda 离线创建环境</h1>
+<div class="title-right">
+    <a href="https://customsshen.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>本文由 [<a href="http://ksria.com/simpread/" rel="nofollow">简悦 SimpRead</a>](<a href="http://ksria.com/simpread/" rel="nofollow">http://ksria.com/simpread/</a>) 转码， 原文地址 [<a href="https://blog.csdn.net/misterrenwoxing/article/details/128972443" rel="nofollow">blog.csdn.net</a>](<a href="https://blog.csdn.net/misterrenwoxing/article/details/128972443" rel="nofollow">https://blog.csdn.net/misterrenwoxing/article/details/128972443</a>)</p>
+</blockquote>
+<p>目录<br>
+1 在开发服务器上[<a href="https://so.csdn.net/so/search?q=%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">创建虚拟环境</a>](<a href="https://so.csdn.net/so/search?q=%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">https://so.csdn.net/so/search?q=%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020</a>)<br>
+1.1 [<a href="https://so.csdn.net/so/search?q=%E6%9F%A5%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">查看虚拟环境</a>](<a href="https://so.csdn.net/so/search?q=%E6%9F%A5%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">https://so.csdn.net/so/search?q=%E6%9F%A5%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020</a>)<br>
+1.2 创建<a href="https://so.csdn.net/so/search?q=%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">虚拟环境</a><br>
+1.3 安装依赖包<br>
+2 打包压缩所要迁移的<a href="https://so.csdn.net/so/search?q=%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020" rel="nofollow">虚拟环境</a><br>
+2.1 安装 conda pack<br>
+2.2 打包压缩虚拟环境<br>
+3 在生产服务器上安装虚拟环境<br>
+3.1 将压缩文件上传至生产服务器<br>
+3.2 解压虚拟环境压缩包<br>
+3.3 测试虚拟环境<br>
+4 参考文献</p>
+<h2>1 在外网服务器上创建虚拟环境</h2>
+<h3>1.1 查看虚拟环境</h3>
+<p>在 base 环境下，键入 conda env list，可以查看当前已经安装的 python 环境，base 环境为 anaconda 默认环境，torch1.8.1 为我已安装的虚拟环境<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/70456044ce0c62cffdbbab856f06645900f069e1a564645c4403a3d689aa09c5/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f30636131663763666131663134613832616135626131356532313266643433612e706e67"><img src="https://camo.githubusercontent.com/70456044ce0c62cffdbbab856f06645900f069e1a564645c4403a3d689aa09c5/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f30636131663763666131663134613832616135626131356532313266643433612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/0ca1f7cfa1f14a82aa5ba15e212fd43a.png" style="max-width: 100%;"></a></p>
+<h3>1.2 创建虚拟环境</h3>
+<p>在 base 环境下，键入 conda create --name torch1.8.1 python=3.7，创建名为 torch1.8.1 的虚拟环境，其 python 版本为 3.7，可按需要更改。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/89d40d5a287f5a7479052d0f7691a64a6425bc1be3d493c79f753594bf854b13/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32623131643461626230376134663535386533666430323264656631373164652e706e67"><img src="https://camo.githubusercontent.com/89d40d5a287f5a7479052d0f7691a64a6425bc1be3d493c79f753594bf854b13/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32623131643461626230376134663535386533666430323264656631373164652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/2b11d4abb07a4f558e3fd022def171de.png" style="max-width: 100%;"></a></p>
+<p>键入 y 回车以确定<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d82da8d3378f47208b25ccfdc4e1c7f0a760053ce166724bf6ed7ecfcb6c1c57/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f31393239336535376133313034366538626261626330663236653730323864352e706e67"><img src="https://camo.githubusercontent.com/d82da8d3378f47208b25ccfdc4e1c7f0a760053ce166724bf6ed7ecfcb6c1c57/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f31393239336535376133313034366538626261626330663236653730323864352e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/19293e57a31046e8bbabc0f26e7028d5.png" style="max-width: 100%;"></a></p>
+<p>创建名为 torch1.8.1 的虚拟环境成功<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/64a20f66ce515270b553f895c09270c73e9d3a72b3c409f88e04868618758343/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38313134343936386364383234656365393433353466666537376263643632382e706e67"><img src="https://camo.githubusercontent.com/64a20f66ce515270b553f895c09270c73e9d3a72b3c409f88e04868618758343/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f38313134343936386364383234656365393433353466666537376263643632382e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/81144968cd824ece94354ffe77bcd628.png" style="max-width: 100%;"></a></p>
+<h3>1.3 安装依赖包</h3>
+<p>键入 conda activate torch1.8.1 激活虚拟环境，此时用户名前面出现 (torch1.8.1) 表明激活了虚拟环境 torch1.8.1，使用 conda install library_name 安装需要的依赖包，library_name 为相应的依赖包，图中示例为 pandas。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e84c1f6295ea4314636168967c76ad7ee93949e72041cb1c90d4fa743a1fe13/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f62353234626633626563303134306431393962383366353665626137366634652e706e67"><img src="https://camo.githubusercontent.com/7e84c1f6295ea4314636168967c76ad7ee93949e72041cb1c90d4fa743a1fe13/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f62353234626633626563303134306431393962383366353665626137366634652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/b524bf3bec0140d199b83f56eba76f4e.png" style="max-width: 100%;"></a></p>
+<p>键入 y 回车以确定<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ffe467a32b193c7f2d96518e8224253f2990fb6244295f922427517f5ffee51d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66653233323162626237373234376235383237313435353539386566363230652e706e67"><img src="https://camo.githubusercontent.com/ffe467a32b193c7f2d96518e8224253f2990fb6244295f922427517f5ffee51d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f66653233323162626237373234376235383237313435353539386566363230652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/fe2321bbb77247b58271455598ef620e.png" style="max-width: 100%;"></a></p>
+<p>键入 conda deactivate 关闭虚拟环境</p>
+<h2>2 打包压缩所要迁移的虚拟环境</h2>
+<h3>2.1 安装 conda pack</h3>
+<p>打包虚拟环境需要安装 conda pack，在 conda 的 base 环境下输入以下命令安装 conda pack</p>
+<pre class="notranslate"><code class="notranslate">conda install -c conda-forge conda -pack
+
+</code></pre>
+<h3>2.2 打包压缩虚拟环境</h3>
+<p>键入 conda pack -n torch1.8.1 -o torch1.8.1.tar.gz，torch1.8.1 为将要打包的虚拟环境名，torch1.8.1.tar.gz 为打包压缩保存的文件名。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/621fca409ba8abec59a1664f01253ff004fd3115058291061c7e208f7d756a77/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65623563396130383732353734303363393032356664386562623334653032352e706e67"><img src="https://camo.githubusercontent.com/621fca409ba8abec59a1664f01253ff004fd3115058291061c7e208f7d756a77/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65623563396130383732353734303363393032356664386562623334653032352e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/eb5c9a087257403c9025fd8ebb34e025.png" style="max-width: 100%;"></a></p>
+<p>等待 conda pack 检索虚拟环境的依赖包，开始打包压缩，依赖包过大会需要更久的时间。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/737d6e153c0efac6233c860bf9c1de574cb0069b80aa9892a4b51124b62b3a83/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64396339323361313564356234613263393164613538623138333538323431372e706e67"><img src="https://camo.githubusercontent.com/737d6e153c0efac6233c860bf9c1de574cb0069b80aa9892a4b51124b62b3a83/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f64396339323361313564356234613263393164613538623138333538323431372e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/d9c923a15d5b4a2c91da58b183582417.png" style="max-width: 100%;"></a></p>
+<p>打包完成。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/433342c631340e2ecbeea04c19327d86a59e127454e8e9e8f38ef8e68c0e21c2/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f36343534326461396632386234303639396161356639333434356366323534612e706e67"><img src="https://camo.githubusercontent.com/433342c631340e2ecbeea04c19327d86a59e127454e8e9e8f38ef8e68c0e21c2/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f36343534326461396632386234303639396161356639333434356366323534612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/64542da9f28b40699aa5f93445cf254a.png" style="max-width: 100%;"></a></p>
+<h2>3 在生产服务器上安装虚拟环境</h2>
+<h3>3.1 将压缩文件上传至生产服务器</h3>
+<p>通过 FileZilla、WinSCP、SSH 或者其他工具将虚拟环境压缩包传输至生产服务器。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fb38c9982ec8d4ca64eceb285e10f2b09b98a5305f10a73e48ef70cda7e33e96/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65663637313361633462366334356463393066393535633562633137613163332e706e67"><img src="https://camo.githubusercontent.com/fb38c9982ec8d4ca64eceb285e10f2b09b98a5305f10a73e48ef70cda7e33e96/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f65663637313361633462366334356463393066393535633562633137613163332e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/ef6713ac4b6c45dc90f955c5bc17a1c3.png" style="max-width: 100%;"></a></p>
+<h3>3.2 解压虚拟环境压缩包</h3>
+<p>在生产服务器上找到 anaconda 的环境安装路径</p>
+<pre class="notranslate"><code class="notranslate">conda info --env # 查看anaconda安装路径
+
+cd /usr/local/tools/anaconda3/envs # cd到anaconda的envs目录
+
+mkdir torch1.8.1 # 创建虚拟环境迁移文件夹
+
+cd /home/user/4 # cd到虚拟环境压缩包所在文件夹
+ tar -xzvf torch1.8.1.tar.gz -C /usr/local/tools/anaconda3/envs/torch1.8.1# 解压环境压缩包至目标文件夹
+
+
+</code></pre>
+<p>等待解压完成<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/799b71167f98cde213a4e72b03be96ee4aed0c20a95f8f8d56b32c43f070ecfc/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32623061313631633831363034373139613732636539383037346532656431392e706e67"><img src="https://camo.githubusercontent.com/799b71167f98cde213a4e72b03be96ee4aed0c20a95f8f8d56b32c43f070ecfc/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32623061313631633831363034373139613732636539383037346532656431392e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/2b0a161c81604719a72ce98074e2ed19.png" style="max-width: 100%;"></a></p>
+<h3>3.3 测试虚拟环境</h3>
+<p>键入 conda env list 查看已安装的虚拟环境，torch1.8.1 已安装。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/04dc7589e825c27fc4b083fdab5759d7f6e436539ce443869c2602e815ec8980/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61356231656433316133663934623232616335663665313036616335336366312e706e67"><img src="https://camo.githubusercontent.com/04dc7589e825c27fc4b083fdab5759d7f6e436539ce443869c2602e815ec8980/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f61356231656433316133663934623232616335663665313036616335336366312e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/a5b1ed31a3f94b22ac5f6e106ac53cf1.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("02/16/2015"!=""){
+    var now=new Date();
+    var startSite=new Date("02/16/2015");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if("苏"!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","customsshen/customsshen.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+</html>
