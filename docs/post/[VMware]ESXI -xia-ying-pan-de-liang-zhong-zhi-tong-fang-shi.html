@@ -9,7 +9,32 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="[VMware]ESXI 下硬盘的两种直通方式">
+<meta name="description" content="文章来自：https://rmbz.net/archives/vmware-esxi-passthrough
+
+最近再搞 ESXI，把原来的 “黑群晖” 改成 ESXI；因为群晖里有数据，为了不想迁移数据所以需要对硬盘做直通
+
+### 0x01 RDM 直通
+
+通过 RDM（Raw Device Mapping）方式，将磁盘应设为本地 VMDK  
+优点：不需要增加硬件和修改任何配置文件，配置起来很易用  
+缺点：如果需要对硬盘调整，需要重新映射；群晖无法获取到 SMART 信息
+
+1. 通过命令`ls -l /dev/disks`查看当前挂载的所有磁盘信息。">
+<meta property="og:title" content="[VMware]ESXI 下硬盘的两种直通方式">
+<meta property="og:description" content="文章来自：https://rmbz.net/archives/vmware-esxi-passthrough
+
+最近再搞 ESXI，把原来的 “黑群晖” 改成 ESXI；因为群晖里有数据，为了不想迁移数据所以需要对硬盘做直通
+
+### 0x01 RDM 直通
+
+通过 RDM（Raw Device Mapping）方式，将磁盘应设为本地 VMDK  
+优点：不需要增加硬件和修改任何配置文件，配置起来很易用  
+缺点：如果需要对硬盘调整，需要重新映射；群晖无法获取到 SMART 信息
+
+1. 通过命令`ls -l /dev/disks`查看当前挂载的所有磁盘信息。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://customsshen.github.io/post/%5BVMware%5DESXI%20-xia-ying-pan-de-liang-zhong-zhi-tong-fang-shi.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>[VMware]ESXI 下硬盘的两种直通方式</title>
 
 

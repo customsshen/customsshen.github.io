@@ -9,7 +9,22 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量">
+<meta name="description" content="# 第一步，代码编写
+
+#### Dockerfile
+
+Dockerfile 的后半部分（设置[环境变量](https://so.csdn.net/so/search?q=%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F&spm=1001.2101.3001.7020)默认值，以及传到 run.sh 中）  
+一个坑：ENTRYPOINT 后面不能用 [] 的形式 否则无法读取环境变量值。">
+<meta property="og:title" content="docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量">
+<meta property="og:description" content="# 第一步，代码编写
+
+#### Dockerfile
+
+Dockerfile 的后半部分（设置[环境变量](https://so.csdn.net/so/search?q=%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F&spm=1001.2101.3001.7020)默认值，以及传到 run.sh 中）  
+一个坑：ENTRYPOINT 后面不能用 [] 的形式 否则无法读取环境变量值。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://customsshen.github.io/post/docker%20run%20-e%20-shi-yong-huan-jing-bian-liang-chuan-zhi-%EF%BC%88-zi-fu-%E3%80%81-shu-zi-%E3%80%81json%EF%BC%89-bing-yong-%20python%20-jie-xi-_-mu-yao-da-xiong-di-de-bo-ke-%20-%20CSDN%20-bo-ke-_docker%20run%20-shi-yong-huan-jing-bian-liang.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>docker run -e 使用环境变量传值（字符、数字、json）并用 python 解析_木尧大兄弟的博客 - CSDN 博客_docker run 使用环境变量</title>
 
 

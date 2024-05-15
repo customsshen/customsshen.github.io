@@ -9,7 +9,28 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="Linux中用脚本添加crontab定时任务">
+<meta name="description" content="通常
+我们常用的添加crontab定时任务方式是，手动执行命令：
+``` linux
+crontab -e
+```
+然后将任务脚本手动添加到文件中
+
+实际
+实际中我们常常想在执行程序启动脚本时，自动添加crontab定时任务，例如通过crontab任务周期性删除程序产生的日志等等，我们可以使用如下脚本，通过脚本自动添加我们的crontab定时任务。">
+<meta property="og:title" content="Linux中用脚本添加crontab定时任务">
+<meta property="og:description" content="通常
+我们常用的添加crontab定时任务方式是，手动执行命令：
+``` linux
+crontab -e
+```
+然后将任务脚本手动添加到文件中
+
+实际
+实际中我们常常想在执行程序启动脚本时，自动添加crontab定时任务，例如通过crontab任务周期性删除程序产生的日志等等，我们可以使用如下脚本，通过脚本自动添加我们的crontab定时任务。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://customsshen.github.io/post/Linux-zhong-yong-jiao-ben-tian-jia-crontab-ding-shi-ren-wu.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>Linux中用脚本添加crontab定时任务</title>
 
 

@@ -9,7 +9,36 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="esxi查看硬盘健康状况以及卸载软件包">
+<meta name="description" content="# esxcli
+
+## 列出硬盘
+
+```bash
+esxcli storage core device list|grep "Display Name"
+```
+
+查看smart
+
+```bash
+esxcli storage core device smart get -d t10.NVMe____ZHITAI_PC005_Active_512GB_______________4100E7D000B728A4
+```。">
+<meta property="og:title" content="esxi查看硬盘健康状况以及卸载软件包">
+<meta property="og:description" content="# esxcli
+
+## 列出硬盘
+
+```bash
+esxcli storage core device list|grep "Display Name"
+```
+
+查看smart
+
+```bash
+esxcli storage core device smart get -d t10.NVMe____ZHITAI_PC005_Active_512GB_______________4100E7D000B728A4
+```。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://customsshen.github.io/post/esxi-cha-kan-ying-pan-jian-kang-zhuang-kuang-yi-ji-xie-zai-ruan-jian-bao.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>esxi查看硬盘健康状况以及卸载软件包</title>
 <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
