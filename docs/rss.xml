@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>积雪之峰</title><link>https://customsshen.github.io</link><description>好记性不如BLOG</description><copyright>积雪之峰</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Sun, 12 May 2024 08:00:31 +0000</lastBuildDate><managingEditor>积雪之峰</managingEditor><ttl>60</ttl><webMaster>积雪之峰</webMaster><item><title>Anaconda 创建虚拟环境及离线迁移_anaconda 离线创建环境</title><link>https://customsshen.github.io/post/Anaconda%20-chuang-jian-xu-ni-huan-jing-ji-li-xian-qian-yi-_anaconda%20-li-xian-chuang-jian-huan-jing.html</link><description>&gt; 本文由 [[简悦 SimpRead](http://ksria.com/simpread/)](http://ksria.com/simpread/) 转码， 原文地址 [[blog.csdn.net](https://blog.csdn.net/misterrenwoxing/article/details/128972443)](https://blog.csdn.net/misterrenwoxing/article/details/128972443)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>积雪之峰</title><link>https://customsshen.github.io</link><description>好记性不如BLOG</description><copyright>积雪之峰</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://customsshen.github.io</link></image><lastBuildDate>Wed, 22 May 2024 07:11:57 +0000</lastBuildDate><managingEditor>积雪之峰</managingEditor><ttl>60</ttl><webMaster>积雪之峰</webMaster><item><title>Anaconda 创建虚拟环境及离线迁移_anaconda 离线创建环境</title><link>https://customsshen.github.io/post/Anaconda%20-chuang-jian-xu-ni-huan-jing-ji-li-xian-qian-yi-_anaconda%20-li-xian-chuang-jian-huan-jing.html</link><description>&gt; 本文由 [[简悦 SimpRead](http://ksria.com/simpread/)](http://ksria.com/simpread/) 转码， 原文地址 [[blog.csdn.net](https://blog.csdn.net/misterrenwoxing/article/details/128972443)](https://blog.csdn.net/misterrenwoxing/article/details/128972443)&#13;
 &#13;
 目录  &#13;
 1 在开发服务器上[[创建虚拟环境](https://so.csdn.net/so/search?q=%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020)](https://so.csdn.net/so/search?q=%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83&amp;spm=1001.2101.3001.7020)  &#13;
@@ -244,11 +244,11 @@ switch:&#13;
 &#13;
       centos:&#13;
 &#13;
-        command_on: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.on 4'"&#13;
+        command_on: "sshpass -p password ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.on 4'"&#13;
 &#13;
-        command_off: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.off 4'"&#13;
+        command_off: "sshpass -p password ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.off 4'"&#13;
 &#13;
-        command_state: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76'vim-cmd vmsvc/power.getstate 4|grep on|wc -l'"&#13;
+        command_state: "sshpass -p password  ssh -o stricthostkeychecking=no -p22 root@192.168.1.76'vim-cmd vmsvc/power.getstate 4|grep on|wc -l'"&#13;
 &#13;
         value_template: '{{ value == "1" }}'&#13;
 &#13;

@@ -17,11 +17,11 @@ switch:
 
       centos:
 
-        command_on: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.on 4'"
+        command_on: "sshpass -p password ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.on 4'"
 
-        command_off: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.off 4'"
+        command_off: "sshpass -p password ssh -o stricthostkeychecking=no -p22 root@192.168.1.76 'vim-cmd vmsvc/power.off 4'"
 
-        command_state: "sshpass -p ssSS2326250. ssh -o stricthostkeychecking=no -p22 root@192.168.1.76'vim-cmd vmsvc/power.getstate 4|grep on|wc -l'"
+        command_state: "sshpass -p password  ssh -o stricthostkeychecking=no -p22 root@192.168.1.76'vim-cmd vmsvc/power.getstate 4|grep on|wc -l'"
 
         value_template: '{{ value == "1" }}'
 
