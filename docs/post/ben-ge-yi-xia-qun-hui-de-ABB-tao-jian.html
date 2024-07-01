@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -70,8 +70,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>前段时间研究all in boom的系统备份与恢复，测试了ABB(Active Backup for Business)套件对 vSphere备份恢复，并做了一些数据实验，同时请教了一些大神，了解到对esxi系统下虚拟机的备份是全局备份，先是备份了指定虚拟机后，在物理删除改虚拟机，通过ABB执行恢复，打开虚拟机发现，不需要其他操作，立马恢复到了之前的状态。<br>
 墨菲定律来了，前天发现家里all in esxi的系统盘硬盘有掉盘问题，想着可能是温度原因，加了个M.2的散热马甲，然而并没有什么乱用，赶紧下单买了一个新的。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
 <p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
@@ -126,6 +128,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");

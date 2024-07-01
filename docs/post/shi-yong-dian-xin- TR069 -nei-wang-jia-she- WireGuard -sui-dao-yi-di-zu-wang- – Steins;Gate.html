@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -232,8 +232,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 通信速度实际上受制于光猫的百兆网口的链路速度。事实上，如果不在意下行速度的话，完全可以把宽带移动到百兆口上，而用千兆口进行 TR069 内网通信，得到一条千兆对等隧道。一般而言，对于服务器的场景下，使用下行带宽不如上行带宽多，大多数情况下下行不会超过上行。深圳电信 500M 宽带就有 50M 的上行。<br>
 此外，这个方案并不需要宽带是开通的。只要宽带曾经开通过，即便被停机，仍然可以用这个方案架设隧道到其他能上网的地方来蹭网用。不过需要解决 DNS 的问题。这里在没有宽带的情况下，没有办法正常解析域名。可能需要一些其他的配置来解决这个问题。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://customsshen.github.io"> 积雪之峰 </a>
 <p><a href="https://beian.miit.gov.cn/" target="_blank">苏</a>
@@ -288,6 +290,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");
