@@ -121,7 +121,7 @@ CMD [ "python", "server.py" ]
 </code></pre>
 <p>如果沒有很在意 Image 大小，這樣寫並沒有什麼問題。要打造小一點的 Image，可以先從 <code class="notranslate">FROM</code> 下手，官方其實有提到，如果是要拿來當 Production 的話，建議使用 <code class="notranslate">python:&lt;version&gt;-slim</code>，這裡面把一些不必要的套件全部清除了，只留下最基本要跑的 Python 套件，開發者可以透過這個 Image 再去疊加要用的套件，這樣 Image 會是最小的。來把上面的 <code class="notranslate">python:3.9</code> 換成 <code class="notranslate">python:3.9-slim</code>。</p>
 <p>除了 <code class="notranslate">slim</code> 之外，我個人會推薦用 <code class="notranslate">alpine</code> 版本 (之前<a href="https://blog.wu-boy.com/2015/12/a-super-small-docker-image-based-on-alpine-linux/" rel="nofollow">介紹文章</a>)，此版本整個 Base Image 只有 5MB 大小，Alpine 版本為了將系統縮成這麼小，移除了大部分軟體，包含 <code class="notranslate">git</code> 或 <code class="notranslate">bash</code> 這種大型套件，所以基本上登入系統之後，幾乎都是空的，要什麼套件全都要自己裝，這非常適合用在微服務上，可以達到快速部署。</p>
-<table role="table"><thead><tr><th>python3.9</th><th>python3.9-slim</th><th>python3.9-alpine</th></tr></thead><tbody><tr><td>842MB</td><td>118MB</td><td><strong>55.8MB</strong></td></tr></tbody></table>
+<markdown-accessiblity-table><table role="table"><thead><tr><th>python3.9</th><th>python3.9-slim</th><th>python3.9-alpine</th></tr></thead><tbody><tr><td>842MB</td><td>118MB</td><td><strong>55.8MB</strong></td></tr></tbody></table></markdown-accessiblity-table>
 <p>這邊寫法請注意，一定要先處理 requirements.txt 部分，在處理 <code class="notranslate">COPY</code> 檔案，這樣才可以享受 Layer Cache 的優勢，否則 Source Code 變動後，整個 build image 時間就沒有省到了。</p>
 <h2>使用 Multistage Build</h2>
 <p>除了用最小 Size 的 Alpine Image 之外，還可以透過 Multistage Build 將需要的檔案複製到全新的 Image 內進行最後的打包，將寫法改成如下，可以再減少一些空間</p>
@@ -142,7 +142,7 @@ ENV PATH=/home/app/.local/bin:$PATH
 CMD ["/bin/sh"]
 </code></pre>
 <p>看看底下結果</p>
-<table role="table"><thead><tr><th>python3.9</th><th>python3.9-slim</th><th>python3.9-alpine</th><th>python3.9-alpine (Multistage)</th></tr></thead><tbody><tr><td>842MB</td><td>118MB</td><td>55.8MB</td><td><strong>48.8MB</strong></td></tr></tbody></table>
+<markdown-accessiblity-table><table role="table"><thead><tr><th>python3.9</th><th>python3.9-slim</th><th>python3.9-alpine</th><th>python3.9-alpine (Multistage)</th></tr></thead><tbody><tr><td>842MB</td><td>118MB</td><td>55.8MB</td><td><strong>48.8MB</strong></td></tr></tbody></table></markdown-accessiblity-table>
 <p>這邊透過 <code class="notranslate">--user</code> 方式將檔案都放在 root 底下，接著在用 <code class="notranslate">COPY --from=builder</code> 複製到另一個 Image 內。</p>
 <h2>心得</h2>
 <p>各種語言都有不同的優化方式，可以參考之前我寫的一篇『<a href="https://blog.wu-boy.com/2017/04/build-minimal-docker-container-using-multi-stage-for-go-app/" rel="nofollow">用 Docker Multi-Stage 編譯出 Go 語言最小 Image</a>』。上面的寫法固然已經是最小的方式，但是還是有些安全性的疑慮，關於安全性的議題，我會在另一篇再詳細介紹，大概方向就是 Application 不要用 root 去執行，避免服務被入侵的時候，被拿到 root 權限，就像不用 docker 時，應該也不會拿 root 去跑任何服務吧。這都是相當不安全的作法，那 Docker 該如何避免呢？我會在另一篇做介紹。</p>
